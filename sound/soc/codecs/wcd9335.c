@@ -4830,6 +4830,10 @@ static int tasha_codec_spk_boost_event(struct snd_soc_dapm_widget *w,
 		boost_path_cfg1 = WCD9335_CDC_RX8_RX_PATH_CFG1;
 		reg = WCD9335_CDC_RX8_RX_PATH_CTL;
 		reg_mix = WCD9335_CDC_RX8_RX_PATH_MIX_CTL;
+	} else {
+		dev_err(codec->dev, "%s: unknown widget: %s\n",
+			__func__, w->name);
+		return -EINVAL;
 	}
 
 	switch (event) {
@@ -8566,6 +8570,7 @@ static int tasha_codec_vbat_enable_event(struct snd_soc_dapm_widget *w,
 
 	vbat_path_ctl = WCD9335_CDC_VBAT_VBAT_PATH_CTL;
 	vbat_cfg = WCD9335_CDC_VBAT_VBAT_CFG;
+	vbat_path_cfg = WCD9335_CDC_RX8_RX_PATH_CFG1;
 
 	if (!strcmp(w->name, "RX INT8 VBAT"))
 		vbat_path_cfg = WCD9335_CDC_RX8_RX_PATH_CFG1;
@@ -8924,7 +8929,11 @@ static int tasha_int_dem_inp_mux_put(struct snd_kcontrol *kcontrol,
 	struct snd_soc_codec *codec = widget->codec;
 	struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
 	unsigned int val;
+<<<<<<< HEAD
 	unsigned short look_ahead_dly_reg;
+=======
+	unsigned short look_ahead_dly_reg = WCD9335_CDC_RX0_RX_PATH_CFG0;
+>>>>>>> 7870db0cfa908... misc: Fix uninitilized variables
 
 	val = ucontrol->value.enumerated.item[0];
 	if (val >= e->items)
