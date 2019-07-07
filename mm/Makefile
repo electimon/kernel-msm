@@ -98,3 +98,5 @@ obj-$(CONFIG_MEMORY_BALLOON) += balloon_compaction.o
 obj-$(CONFIG_FORCE_RECLAIM)	+= force_reclaim.o
 obj-$(CONFIG_CMA_DEBUGFS) += cma_debug.o
 obj-$(CONFIG_HARDENED_USERCOPY) += usercopy.o
+
+CFLAGS_kmemleak.o += -DCONFIG_DEBUG_FS
