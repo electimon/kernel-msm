@@ -1048,6 +1048,7 @@ TRACE_EVENT(cache_hwmon_update,
 	TP_printk("dev=%s freq=%lu", __get_str(name), __entry->freq)
 );
 
+#ifdef CONFIG_ARM_MEMLAT_MON
 TRACE_EVENT(memlat_dev_meas,
 
 	TP_PROTO(const char *name, unsigned int dev_id, unsigned long inst,
@@ -1115,6 +1116,7 @@ TRACE_EVENT(memlat_dev_update,
 		__entry->freq,
 		__entry->vote)
 );
+#endif
 
 TRACE_EVENT(msmpower_max_ddr,
 
