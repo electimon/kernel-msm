@@ -86,6 +86,7 @@ obj-$(CONFIG_HFS_FS)		+= hfs/
 obj-$(CONFIG_ECRYPT_FS)		+= ecryptfs/
 obj-$(CONFIG_SDCARD_FS)		+= sdcardfs/
 obj-$(CONFIG_ESD_FS)		+= esdfs/
+obj-$(CONFIG_SDFAT_FS)		+= sdfat/
 obj-$(CONFIG_VXFS_FS)		+= freevxfs/
 obj-$(CONFIG_NFS_FS)		+= nfs/
 obj-$(CONFIG_EXPORTFS)		+= exportfs/
