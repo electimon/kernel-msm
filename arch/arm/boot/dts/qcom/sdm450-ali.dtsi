@@ -240,6 +240,13 @@
 			VP-supply = <&dummy_vreg>;
 			pinctrl-names = "default";
 			pinctrl-0 = <&cs35l35_irq_default &cs35l35_reset_default>;
+			reg-names = "csr_gp_io_mux_mic_ctl",
+				"csr_gp_io_mux_spkr_ctl",
+				"csr_gp_io_lpaif_pri_pcm_pri_mode_muxsel",
+				"csr_gp_io_mux_quin_ctl",
+				"csr_gp_io_lpaif_qui_pcm_sec_mode_muxsel",
+				"csr_gp_io_mux_mic_ext_clk_ctl",
+				"csr_gp_io_mux_sec_tlmm_ctl";
 		};
 
 		usb3813@2D {
@@ -551,6 +558,7 @@
 
 		qcom,albus-audio;
 		qcom,ali-audio;
+
 		/delete-property/ qcom,hdmi-dba-codec-rx;
 		asoc-codec = <&stub_codec>;
 		asoc-codec-names = "msm-stub-codec.1";
