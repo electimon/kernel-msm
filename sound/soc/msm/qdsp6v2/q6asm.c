@@ -4856,7 +4856,7 @@ fail_cmd:
 	return rc;
 }
 
-static int __q6asm_media_format_block_pcm_v4(struct audio_client *ac,
+/*static int __q6asm_media_format_block_pcm_v4(struct audio_client *ac,
 					     uint32_t rate, uint32_t channels,
 					     uint16_t bits_per_sample,
 					     int stream_id,
@@ -4882,11 +4882,6 @@ static int __q6asm_media_format_block_pcm_v4(struct audio_client *ac,
 	memset(&fmt, 0, sizeof(fmt));
 	q6asm_stream_add_hdr(ac, &fmt.hdr, sizeof(fmt), TRUE, stream_id);
 	atomic_set(&ac->cmd_state, -1);
-	/*
-	 * Updated the token field with stream/session for compressed playback
-	 * Platform driver must know the the stream with which the command is
-	 * associated
-	 */
 	if (ac->io_mode & COMPRESSED_STREAM_IO)
 		fmt.hdr.token = ((ac->session << 8) & 0xFFFF00) |
 				(stream_id & 0xFF);
@@ -4942,7 +4937,7 @@ static int __q6asm_media_format_block_pcm_v4(struct audio_client *ac,
 	return 0;
 fail_cmd:
 	return rc;
-}
+}*/
 
 int q6asm_media_format_block_pcm(struct audio_client *ac,
 				uint32_t rate, uint32_t channels)
