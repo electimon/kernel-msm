@@ -561,8 +561,6 @@ static int __read_queue(struct vidc_iface_q_info *qinfo, u8 *packet,
 		new_read_idx = write_idx;
 		rc = -ENODATA;
 	}
-
-
 	if (new_read_idx != write_idx)
 		queue->qhdr_rx_req = 0;
 	else
