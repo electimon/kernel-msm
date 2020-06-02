@@ -470,8 +470,6 @@ extern int irq_chip_set_affinity_parent(struct irq_data *data,
 extern void note_interrupt(unsigned int irq, struct irq_desc *desc,
 			   irqreturn_t action_ret);
 
-/* Resending of interrupts :*/
-void check_irq_resend(struct irq_desc *desc, unsigned int irq);
 
 /* Enable/disable irq debugging output: */
 extern int noirqdebug_setup(char *str);
