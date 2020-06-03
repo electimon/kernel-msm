@@ -1461,7 +1461,7 @@ clip_area:
 }
 
 /* ASCII names order MUST match enum */
-static const char const *ascii_names[] = { "aod", "stats", "folio",
+static const char *ascii_names[] = { "aod", "stats", "folio",
 	"charger", "wakeup", "fps", "query", "runtime", "na"
 };
 
@@ -2889,9 +2889,10 @@ static void synaptics_dsx_sensor_state(struct synaptics_rmi4_data *rmi4_data,
 		if (!rmi4_data->in_bootloader)
 			synaptics_dsx_apply_modifiers(rmi4_data, STATE_SUSPEND);
 
-		if (!rmi4_data->suspend_is_wakeable)
+		if (!rmi4_data->suspend_is_wakeable) {
 			synaptics_rmi4_irq_enable(rmi4_data, false);
 			break;
+		}
 
 	case STATE_ACTIVE:
 		if (!rmi4_data->in_bootloader)
@@ -2904,9 +2905,10 @@ static void synaptics_dsx_sensor_state(struct synaptics_rmi4_data *rmi4_data,
 			pr_err("Active state without input device\n");
 		}
 
-		if (gStat.enabled)
+		if (gStat.enabled) {
 			statistics_start_timekeeping(rmi4_data);
 			break;
+		}
 
 	case STATE_STANDBY:
 		synaptics_rmi4_irq_enable(rmi4_data, false);
@@ -2956,9 +2958,10 @@ static void synaptics_dsx_sensor_state(struct synaptics_rmi4_data *rmi4_data,
 			pr_debug("de-allocated input device\n");
 		}
 
-		if (gStat.enabled)
+		if (gStat.enabled) {
 			statistics_stop_timekeeping();
 			break;
+		}
 	}
 
 	pr_info("state change %s -> %s\n",

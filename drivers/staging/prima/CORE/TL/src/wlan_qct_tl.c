@@ -11874,7 +11874,7 @@ WLAN_TLAPGetNextTxIds
 
   ++ucNextSTA;
 
-  if ( WLAN_MAX_STA_COUNT <= ucNextSTA )
+  if ( WLAN_MAX_STA_COUNT <= ucNextSTA ) {
     ucNextSTA = 0;
 
     isServed = FALSE;
@@ -11894,7 +11894,7 @@ WLAN_TLAPGetNextTxIds
       pTLCb->ucCurLeftWeight =  pTLCb->tlConfigInfo.ucAcWeights[pTLCb->uCurServedAC];
  
     } // (0 == pTLCb->ucCurLeftWeight)
-
+  }
   ucTempSTA = ucNextSTA;
   minWeightSta = ucNextSTA;
 
