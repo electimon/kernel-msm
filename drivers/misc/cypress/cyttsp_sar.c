@@ -768,7 +768,7 @@ int __cycapsense_fw_update(struct cycapsense_ctrl_data *data)
 	const struct firmware *fw = NULL;
 	char *fw_name = NULL;
 	struct hex_info *inf;
-	int error = 0;
+	int error;
 
 	inf = &data->hssp_d.inf;
 
@@ -1397,7 +1397,7 @@ static int cyttsp_sar_probe(struct i2c_client *client,
 	struct cyttsp_sar_platform_data *pdata;
 	struct cyttsp_sar_data *data;
 	struct power_supply *psy = NULL;
-	int error, i;
+	int error = 0, i;
 	char *name;
 	char *buffer;
 
