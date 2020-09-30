@@ -912,7 +912,7 @@ static int clk_osm_setup_hw_table(struct clk_osm *c)
 {
 	struct osm_entry *entry = c->osm_table;
 	int i;
-	u32 freq_val, volt_val, override_val, spare_val;
+	u32 freq_val, volt_val, override_val, spare_val = 0;
 	u32 table_entry_offset, last_spare, last_virtual_corner = 0;
 
 	for (i = 0; i < OSM_TABLE_SIZE; i++) {
