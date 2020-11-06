@@ -1,0 +1,1 @@
+obj-$(CONFIG_REGULATOR_SLG5BM43670) += slg5bm43670-regulator.o
