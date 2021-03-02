@@ -495,13 +495,9 @@ struct task_struct *__switch_to(struct task_struct *prev,
 unsigned long get_wchan(struct task_struct *p)
 {
 	struct stackframe frame;
-	unsigned long stack_page, ret = 0;
+	unsigned long stack_page;
 	int count = 0;
 	if (!p || p == current || p->state == TASK_RUNNING)
-		return 0;
-
-	stack_page = (unsigned long)try_get_task_stack(p);
-	if (!stack_page)
 		return 0;
 
 	frame.fp = thread_saved_fp(p);
@@ -512,16 +508,11 @@ unsigned long get_wchan(struct task_struct *p)
 		if (frame.sp < stack_page ||
 		    frame.sp >= stack_page + THREAD_SIZE ||
 		    unwind_frame(&frame))
-			goto out;
-		if (!in_sched_functions(frame.pc)) {
-			ret = frame.pc;
-			goto out;
-		}
+			return 0;
+		if (!in_sched_functions(frame.pc))
+			return frame.pc;
 	} while (count ++ < 16);
-
-out:
-	put_task_stack(p);
-	return ret;
+	return 0;
 }
 
 unsigned long arch_align_stack(unsigned long sp)
